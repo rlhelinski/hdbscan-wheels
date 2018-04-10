@@ -1,6 +1,6 @@
 [submodule "hdbscan"]
 	path = hdbscan
 	url = https://github.com/scikit-learn-contrib/hdbscan.git
-[submodule "numpy-wheels"]
-	path = numpy-wheels
-	url = https://github.com/MacPython/numpy-wheels.git
+[submodule "multibuild"]
+	path = multibuild
+	url = https://github.com/matthew-brett/multibuild.git
