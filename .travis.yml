@@ -1,0 +1,144 @@
+env:
+    global:
+        - REPO_DIR=hdbscan
+        # Commit from your-project that you want to build
+        - BUILD_COMMIT=master
+        - PLAT=x86_64
+        - UNICODE_WIDTH=32
+        - WHEELHOUSE_UPLOADER_USERNAME=travis-worker
+        # Following generated with
+        # travis encrypt -r biopython/biopython-wheels WHEELHOUSE_UPLOADER_SECRET=<the api key>
+        # This is for Rackspace uploads.  Contact Matthew Brett, or the
+        # scikit-learn team, for # permission (and the API key) to upload to
+        # the Rackspace account used here, or use your own account.
+        #- secure:
+        #    "..."
+
+language: python
+# The travis Python version is unrelated to the version we build and test
+# with.  This is set with the MB_PYTHON_VERSION variable.
+python: 3.5
+sudo: required
+dist: trusty
+services: docker
+
+matrix:
+  exclude:
+    # Exclude the default (TravisCI provided) Python 3.5 build
+    - python: 3.5
+  include:
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=2.7
+        - BUILD_DEPENDS="numpy==1.8.0"
+        - TEST_DEPENDS="numpy==1.8.0"
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=2.7
+        - UNICODE_WIDTH=16
+        - BUILD_DEPENDS="numpy==1.8.0"
+        - TEST_DEPENDS="numpy==1.8.0"
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=2.7
+        - PLAT=i686
+        - BUILD_DEPENDS="numpy==1.8.0"
+        - TEST_DEPENDS="numpy==1.8.0"
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=2.7
+        - PLAT=i686
+        - UNICODE_WIDTH=16
+        - BUILD_DEPENDS="numpy==1.8.0"
+        - TEST_DEPENDS="numpy==1.8.0"
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=3.4
+        - BUILD_DEPENDS="numpy==1.9.0"
+        - TEST_DEPENDS="numpy==1.9.0"
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=3.4
+        - PLAT=i686
+        - BUILD_DEPENDS="numpy==1.9.0"
+        - TEST_DEPENDS="numpy==1.9.0"
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=3.5
+        - BUILD_DEPENDS="numpy==1.10.1"
+        - TEST_DEPENDS="numpy==1.10.1"
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=3.5
+        - PLAT=i686
+        - BUILD_DEPENDS="numpy==1.10.1"
+        - TEST_DEPENDS="numpy==1.10.1"
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=3.6
+        - BUILD_DEPENDS="numpy==1.10.1"
+        - TEST_DEPENDS="numpy==1.10.1"
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=3.6
+        - PLAT=i686
+        - BUILD_DEPENDS="numpy==1.10.1"
+        - TEST_DEPENDS="numpy==1.10.1"
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=2.7
+        - BUILD_DEPENDS="numpy==1.8.0"
+        - TEST_DEPENDS="numpy==1.8.0"
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=3.4
+        - BUILD_DEPENDS="numpy==1.9.0"
+        - TEST_DEPENDS="numpy==1.9.0"
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=3.5
+        - BUILD_DEPENDS="numpy==1.10.1"
+        - TEST_DEPENDS="numpy==1.10.1"
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=3.6
+        - BUILD_DEPENDS="numpy==1.12.0"
+        - TEST_DEPENDS="numpy==1.12.0"
+    - os: osx
+      language: generic
+      env:
+        # PyPy 5.8 and NumPy 1.13.0 are a known good combination:
+        - MB_PYTHON_VERSION=pypy-5.8.0
+        - BUILD_DEPENDS="numpy==1.13.0"
+        - TEST_DEPENDS="numpy==1.13.0"
+
+before_install:
+    - source multibuild/common_utils.sh
+    - source multibuild/travis_steps.sh
+    - before_install
+
+install:
+    # Maybe get and clean and patch source
+    - clean_code $REPO_DIR $BUILD_COMMIT
+    - build_wheel $REPO_DIR $PLAT
+
+script:
+    - install_run $PLAT
+
+after_success:
+    # Report checksums (needs to work on Linux and Mac OS X)
+    # - md5sum ${TRAVIS_BUILD_DIR}/wheelhouse/${REPO_DIR}*
+    # - sha256sum ${TRAVIS_BUILD_DIR}/wheelhouse/${REPO_DIR}*
+    # Upload wheels to Rackspace container
+    #- pip install wheelhouse-uploader
+    # This uploads the wheels to a Rackspace container owned by the
+    # scikit-learn team, available at http://wheels.scipy.org.  See above
+    # for information on using this account or choosing another.
+    #- python -m wheelhouse_uploader upload --local-folder
+    #    ${TRAVIS_BUILD_DIR}/wheelhouse/
+    #    --no-update-index
+    #    wheels
