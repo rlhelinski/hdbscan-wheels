@@ -87,6 +87,7 @@ test_script:
     # Now let's run our full test suite...
     - "nosetests -s hdbscan"
     - popd
+    - deactivate
 
 artifacts:
     - path: "%REPO_DIR%\\dist\\*"
