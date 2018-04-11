@@ -17,3 +17,4 @@ for Linux and Apple Mac OS X, and AppVeyor for Microsoft Windows.
 - https://travis-ci.org/rlhelinski/hdbscan-wheels/builds
 - https://ci.appveyor.com/project/rlhelinski/hdbscan-wheels/history
 
+These files were based on https://github.com/biopython/biopython-wheels
