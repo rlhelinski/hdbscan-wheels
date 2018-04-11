@@ -1,6 +1,6 @@
 [submodule "hdbscan"]
 	path = hdbscan
-	url = https://github.com/scikit-learn-contrib/hdbscan.git
+	url = https://github.com/rlhelinski/hdbscan.git
 [submodule "multibuild"]
 	path = multibuild
 	url = https://github.com/matthew-brett/multibuild.git
