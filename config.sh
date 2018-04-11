@@ -27,7 +27,5 @@ function run_tests {
     # The package does not seem to define __version__
     #python -c "import hdbscan; print('HDBSCAN version: ' + hdbscan.__version__)"
     # So far so good, now let's run our full test suite...
-    echo $PATH
-    python -c "import nose; print('nose version: ' + nose.__version__)"
-    "nosetests -s hdbscan"
+    python -m note -s hdbscan
 }
