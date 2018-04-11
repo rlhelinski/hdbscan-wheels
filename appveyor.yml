@@ -91,7 +91,7 @@ test_script:
     - deactivate
 
 artifacts:
-    - path: "%REPO_DIR%\\dist\\*"
+    - path: "%REPO_DIR%\\dist\\%PACKAGE_NAME%*"
 
 on_success:
   # Report checksums
