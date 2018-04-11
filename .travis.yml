@@ -5,6 +5,8 @@ env:
         - BUILD_COMMIT=master
         - PLAT=x86_64
         - UNICODE_WIDTH=32
+        - BUILD_DEPENDS="numpy scipy"
+        - TEST_DEPENDS="numpy scipy nose"
         - WHEELHOUSE_UPLOADER_USERNAME=travis-worker
         # Following generated with
         # travis encrypt -r biopython/biopython-wheels WHEELHOUSE_UPLOADER_SECRET=<the api key>
@@ -30,91 +32,61 @@ matrix:
     - os: linux
       env:
         - MB_PYTHON_VERSION=2.7
-        - BUILD_DEPENDS="numpy==1.8.0 scipy"
-        - TEST_DEPENDS="numpy==1.8.0 scipy nose"
     - os: linux
       env:
         - MB_PYTHON_VERSION=2.7
         - UNICODE_WIDTH=16
-        - BUILD_DEPENDS="numpy==1.8.0 scipy"
-        - TEST_DEPENDS="numpy==1.8.0 scipy nose"
     - os: linux
       env:
         - MB_PYTHON_VERSION=2.7
         - PLAT=i686
-        - BUILD_DEPENDS="numpy==1.8.0 scipy"
-        - TEST_DEPENDS="numpy==1.8.0 scipy nose"
     - os: linux
       env:
         - MB_PYTHON_VERSION=2.7
         - PLAT=i686
         - UNICODE_WIDTH=16
-        - BUILD_DEPENDS="numpy==1.8.0 scipy"
-        - TEST_DEPENDS="numpy==1.8.0 scipy nose"
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.4
-        - BUILD_DEPENDS="numpy==1.9.0 scipy"
-        - TEST_DEPENDS="numpy==1.9.0 scipy nose"
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.4
         - PLAT=i686
-        - BUILD_DEPENDS="numpy==1.9.0 scipy"
-        - TEST_DEPENDS="numpy==1.9.0 scipy nose"
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.5
-        - BUILD_DEPENDS="numpy==1.10.1 scipy"
-        - TEST_DEPENDS="numpy==1.10.1 scipy nose"
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.5
         - PLAT=i686
-        - BUILD_DEPENDS="numpy==1.10.1 scipy"
-        - TEST_DEPENDS="numpy==1.10.1 scipy nose"
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.6
-        - BUILD_DEPENDS="numpy==1.10.1 scipy"
-        - TEST_DEPENDS="numpy==1.10.1 scipy nose"
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.6
         - PLAT=i686
-        - BUILD_DEPENDS="numpy==1.10.1 scipy"
-        - TEST_DEPENDS="numpy==1.10.1 scipy nose"
     - os: osx
       language: generic
       env:
         - MB_PYTHON_VERSION=2.7
-        - BUILD_DEPENDS="numpy==1.8.0 scipy"
-        - TEST_DEPENDS="numpy==1.8.0 scipy nose"
     - os: osx
       language: generic
       env:
         - MB_PYTHON_VERSION=3.4
-        - BUILD_DEPENDS="numpy==1.9.0 scipy"
-        - TEST_DEPENDS="numpy==1.9.0 scipy nose"
     - os: osx
       language: generic
       env:
         - MB_PYTHON_VERSION=3.5
-        - BUILD_DEPENDS="numpy==1.10.1 scipy"
-        - TEST_DEPENDS="numpy==1.10.1 scipy nose"
     - os: osx
       language: generic
       env:
         - MB_PYTHON_VERSION=3.6
-        - BUILD_DEPENDS="numpy==1.12.0 scipy"
-        - TEST_DEPENDS="numpy==1.12.0 scipy nose"
     - os: osx
       language: generic
       env:
         # PyPy 5.8 and NumPy 1.13.0 are a known good combination:
         - MB_PYTHON_VERSION=pypy-5.8.0
-        - BUILD_DEPENDS="numpy==1.13.0 scipy"
-        - TEST_DEPENDS="numpy==1.13.0 scipy nose"
 
 before_install:
     - source multibuild/common_utils.sh
