@@ -94,12 +94,12 @@ script:
 
 after_success:
     # Report checksums (needs to work on Linux and Mac OS X)
-    # - md5sum ${TRAVIS_BUILD_DIR}/wheelhouse/${REPO_DIR}*
-    - sha256sum ${TRAVIS_BUILD_DIR}/dist/${REPO_DIR}*.whl
+    # - md5sum ${REPO_DIR}/dist/${REPO_DIR}*
+    - sha256sum ${REPO_DIR}/dist/${REPO_DIR}*.whl
     # Upload wheels to Rackspace container
     - |
       if [[ $TRAVIS_TAG ]]; then
         python -m pip install twine
         python -m twine upload --repository-url https://test.pypi.org/legacy/
-          ${TRAVIS_BUILD_DIR}/wheelhouse/${REPO_DIR}*.whl
+          ${REPO_DIR}/dist/${REPO_DIR}*.whl
       fi
