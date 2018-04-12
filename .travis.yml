@@ -82,11 +82,6 @@ matrix:
       language: generic
       env:
         - MB_PYTHON_VERSION=3.6
-    - os: osx
-      language: generic
-      env:
-        # PyPy 5.8 and NumPy 1.13.0 are a known good combination:
-        - MB_PYTHON_VERSION=pypy-5.8.0
 
 before_install:
     - source multibuild/common_utils.sh
