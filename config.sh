@@ -24,8 +24,9 @@ function run_tests {
     # Runs tests on installed distribution from an empty directory
     python --version
     # Check the simplest import, and version for consistency
-    # The package does not seem to define __version__
     #python -c "import hdbscan; print('HDBSCAN version: ' + hdbscan.__version__)"
+    # The package does not seem to define __version__, so use pkg_resources
+    python -c "import pkg_resources; print('HDBSCAN version: '+pkg_resources.get_distribution('hdbscan').version)"
     # So far so good, now let's run our full test suite...
     python -m nose -s hdbscan
 }
