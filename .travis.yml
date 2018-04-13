@@ -99,6 +99,7 @@ after_success:
     - |
       if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         shasum -a 256 ${TRAVIS_BUILD_DIR}/wheelhouse/${REPO_DIR}*.whl
+        pip install --upgrade pyOpenSSL
       else
         sha256sum ${TRAVIS_BUILD_DIR}/wheelhouse/${REPO_DIR}*.whl
       fi
