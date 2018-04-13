@@ -96,8 +96,12 @@ after_success:
     # Report checksums (needs to work on Linux and Mac OS X)
     # For Mac OSX, could use 'brew install sha2' then 'sha2 -256 <files>'
     #- md5sum ${TRAVIS_BUILD_DIR}/wheelhouse/${REPO_DIR}*
-    #- sha256sum ${TRAVIS_BUILD_DIR}/wheelhouse/${REPO_DIR}*.whl
-    - ls -l ${TRAVIS_BUILD_DIR}/wheelhouse/${REPO_DIR}*.whl
+    - |
+      if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+        shasum -a 256 ${TRAVIS_BUILD_DIR}/wheelhouse/${REPO_DIR}*.whl
+      else
+        sha256sum ${TRAVIS_BUILD_DIR}/wheelhouse/${REPO_DIR}*.whl
+      fi
     # Upload wheels to Rackspace container
     - |
       if [[ $TRAVIS_TAG ]]; then
