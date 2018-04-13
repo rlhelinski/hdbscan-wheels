@@ -28,13 +28,13 @@ The procedure for compiling the wheels for a new release are as follows:
     that revision ``<new tag>``.
 2.  Switch the ``hdbscan`` revision referenced by the git submodule in
     ``hdbscan-wheels`` to that revision. e.g.,:
-        ``
-        from hdbscan-wheels: cd hdbscan
-        git fetch; git checkout <new tag>
-        cd ..;
-        git add hdbscan
-        ``
-3.  ``git commit`` ...; ``git tag`` <new tag> ; ``git push``
+.. code:: bash
+
+    cd hdbscan-wheels; cd hdbscan
+    git fetch; git checkout <new tag>
+    cd ..;
+    git add hdbscan
+3.  ``git commit`` ...; ``git tag <new tag>`` ; ``git push``
     The push will initiate the builds. The Travis CI jobs will try to upload to
     PyPI because the revision is tagged.
 
