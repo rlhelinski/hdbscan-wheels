@@ -83,8 +83,9 @@ test_script:
     - mkdir empty
     - cd empty
     #- cd %HOMEDRIVE%%HOMEPATH%
-    # The package does not seem to define __version__
     #- "python -c \"import hdbscan; print('HDBSCAN version ' + hdbscan.__version__)\""
+    # The package does not seem to define __version__, so use pkg_resources
+    - "python -c \"import pkg_resources; print('HDBSCAN version: '+pkg_resources.get_distribution('hdbscan').version)\""
     # Now let's run our full test suite...
     - "nosetests -s hdbscan"
     - cd ..
