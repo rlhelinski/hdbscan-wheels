@@ -40,4 +40,4 @@ The procedure for compiling the wheels for a new release are as follows:
 
 The git tag does not necessarily need to coincide with the tag that will be
 inside and part of the name of the wheel files. That version will be the one
-from 'setup.py'.
+from ``setup.py``.
