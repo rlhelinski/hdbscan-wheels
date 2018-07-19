@@ -5,7 +5,7 @@ set -e -x
 for PYBIN in /opt/python/*/bin; do
 # NumPy does not support Python < 3.4
     if [[ "$PYBIN" = *"cp33-cp33m"* ]] ; then continue; fi
-    "${PYBIN}/pip" install numpy nose scipy
+    "${PYBIN}/pip" install numpy nose scipy cython
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
