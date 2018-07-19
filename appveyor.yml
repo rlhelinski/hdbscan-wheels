@@ -3,7 +3,7 @@ environment:
     REPO_DIR: hdbscan
     PACKAGE_NAME: hdbscan
     BUILD_COMMIT: master
-    BUILD_DEPENDS: "numpy scipy"
+    BUILD_DEPENDS: "numpy scipy cython"
     TEST_DEPENDS: "numpy scipy nose"
     WHEELHOUSE_UPLOADER_USERNAME: travis-worker
     #WHEELHOUSE_UPLOADER_SECRET:
