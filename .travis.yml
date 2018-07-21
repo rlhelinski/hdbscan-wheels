@@ -5,7 +5,7 @@ env:
         - BUILD_COMMIT=master
         - PLAT=x86_64
         - UNICODE_WIDTH=32
-        - BUILD_DEPENDS="numpy scipy"
+        - BUILD_DEPENDS="numpy scipy cython"
         - TEST_DEPENDS="numpy scipy nose"
         - TWINE_USERNAME=rlhelinski
         # Following generated with
